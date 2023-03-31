@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+
+    int idenPar, idenImpar, x, numeros[10], numerosPar[10], numerosImpar[10];
+    idenPar = 0;
+    idenImpar = 0;
+
+    for (x = 0; x < 10; x++) {
+        printf("\nDigite o %d° numero: ", x + 1);
+        scanf("%d%*c", &numeros[x]);
+
+        if (numeros[x] % 2 == 0) {
+            numerosPar[idenPar] = numeros[x];
+            idenPar++;
+        }
+        else {
+            numerosImpar[idenImpar] = numeros[x];
+            idenImpar++;
+        }
+    }
+
+    printf("\nNumeros Par:\n");
+    for (x = 0; x < idenPar; x++) {
+        printf("%d\n", numerosPar[x]);
+    }
+
+    printf("\nNumeros Impar:\n");
+    for (x = 0; x < idenImpar; x++) {
+        printf("%d\n", numerosImpar[x]);
+    }
+    return 0;
+}

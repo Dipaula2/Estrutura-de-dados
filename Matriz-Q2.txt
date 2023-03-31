@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int main() {
+   int matriz[5][5];
+   int x, y, sum = 0;
+   
+   printf("Informe TODOS os valores da matriz: \n");
+   
+   
+   for (x = 0; x < 5; x++) {
+      for (y = 0; y < 5; y++) {
+         printf("Valor da posição [%d][%d]: ", x, y);
+         scanf("%d", &matriz[x][y]);
+      }
+   }
+   
+   printf("\nMatriz informada:\n");
+   
+   
+   for (x = 0; x < 5; x++) {
+      for (y = 0; y < 5; y++) {
+         printf("%d ", matriz[x][y]);
+         if (x == y && matriz[x][y] % 2 != 0) { // mesma coisa do vetor na Q1
+            sum
+            += matriz[x][y];
+         }
+      }
+      printf("\n");
+   }
+   
+   printf("\nSoma dos valores ímpares: %d\n", sum);
+   
+   return 0;
+}
