@@ -1,0 +1,41 @@
+#include <stdio.h>
+#include <string.h>
+
+void NomeRef(char nomeCompleto[]) {
+    int i;
+    int numPalavras = 0;
+    int ultimoNome = 0;
+
+  
+    for (i = 0; nomeCompleto[i] != '\0'; i++) {
+        if (nomeCompleto[i] == ' ') {
+            numPalavras++;
+            ultimoNome = i + 1;
+        }
+    }
+
+    
+    char nomeFinal[100];
+    strncpy(nomeFinal, &nomeCompleto[ultimoNome], sizeof(nomeFinal));
+    printf("%s ", nomeFinal);
+    for (i = 0; i < ultimoNome; i++) {
+        if (nomeCompleto[i] != ' ' && (i == 0 || nomeCompleto[i - 1] == ' ')) {
+            printf("%c. ", nomeCompleto[i]);
+        }
+    }
+
+    printf("\n");
+}
+
+int main() {
+    char nomeCompleto[100]; 
+
+    printf("Digite o nome completo: ");
+    fgets(nomeCompleto, sizeof(nomeCompleto), stdin);
+    nomeCompleto[strcspn(nomeCompleto, "\n")] = '\0';
+
+    printf("Referência configurada: ");
+    NomeRef(nomeCompleto);
+
+    return 0;
+}
