@@ -3,31 +3,31 @@
 
 int main() {
 
-    int idenPar, idenImpar, x, numeros[10], numerosPar[10], numerosImpar[10];
-    idenPar = 0;
-    idenImpar = 0;
+    int par, impar, x, numeros[10], numerosPar[10], numerosImpar[10];
+    par = 0;
+    impar = 0;
 
     for (x = 0; x < 10; x++) {
         printf("\nDigite o %d° numero: ", x + 1);
         scanf("%d%*c", &numeros[x]);
 
         if (numeros[x] % 2 == 0) {
-            numerosPar[idenPar] = numeros[x];
-            idenPar++;
+            numerosPar[par] = numeros[x];
+            par++;
         }
         else {
-            numerosImpar[idenImpar] = numeros[x];
-            idenImpar++;
+            numerosImpar[impar] = numeros[x];
+            impar++;
         }
     }
 
     printf("\nNumeros Par:\n");
-    for (x = 0; x < idenPar; x++) {
+    for (x = 0; x < par; x++) {
         printf("%d\n", numerosPar[x]);
     }
 
     printf("\nNumeros Impar:\n");
-    for (x = 0; x < idenImpar; x++) {
+    for (x = 0; x < impar; x++) {
         printf("%d\n", numerosImpar[x]);
     }
     return 0;
