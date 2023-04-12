@@ -1,0 +1,76 @@
+#include <stdio.h>
+#include <string.h>
+
+void str_reverse(char str[]) {
+    int i = 0;
+    int j = strlen(str) - 1;
+    char temp;
+
+    while (i < j) {
+        temp = str[i];
+        str[i] = str[j];
+        str[j] = temp;
+        i++;
+        j--;
+    }
+}
+
+void NomeRef(char nomeCompleto[]) {
+    int i;
+    int numPalavras = 0;
+    int ultimoNome = 0;
+
+    for (i = 0; nomeCompleto[i] != '\0'; i++) {
+        if (nomeCompleto[i] == ' ') {
+            numPalavras++;
+            ultimoNome = i + 1;
+        }
+    }
+
+    char nomeFinal[100];
+    strncpy(nomeFinal, &nomeCompleto[ultimoNome], sizeof(nomeFinal));
+    nomeFinal[strcspn(nomeFinal, " ")] = '\0'; 
+
+    char nomeRef[100] = "";
+    char nomeCurto[100] = "";
+    for (i = 0; i < ultimoNome; i++) {
+        if (nomeCompleto[i] != ' ' && (i == 0 || nomeCompleto[i - 1] == ' ')) {
+            strncat(nomeRef, &nomeCompleto[i], 1);
+            strncat(nomeRef, ".", 1);
+
+            strncat(nomeCurto, &nomeCompleto[i], 1);
+        }
+    }
+    strncat(nomeRef, nomeFinal, sizeof(nomeFinal)); 
+
+    char nomeInvertido[100];
+    strncpy(nomeInvertido, nomeRef, sizeof(nomeInvertido));
+    nomeInvertido[strcspn(nomeInvertido, " ")] = '\0'; 
+    str_reverse(nomeInvertido); 
+
+    
+    for (i = 0; nomeInvertido[i] != '\0'; i++) {
+        if (nomeInvertido[i] == '.') {
+            memmove(&nomeInvertido[i], &nomeInvertido[i + 1], strlen(nomeInvertido) - i);
+            i--;
+        }
+    }
+
+    printf("Nome de referência: %s\n", nomeRef);
+
+    printf("Nome invertido: %s\n", nomeInvertido);
+
+    printf("Nome sem espaços: %s%s\n", nomeCurto, nomeFinal);
+}
+
+int main() {
+    char nomeCompleto[100];
+
+    printf("Digite o nome completo: ");
+    fgets(nomeCompleto, sizeof(nomeCompleto), stdin);
+    nomeCompleto[strcspn(nomeCompleto, "\n")] = '\0';
+
+    NomeRef(nomeCompleto);
+
+    return 0;
+}
