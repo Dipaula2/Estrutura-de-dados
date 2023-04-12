@@ -1,0 +1,71 @@
+#include <stdio.h>
+
+void trocar(int *a, int *b) {
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void bubbleSort(int vetor[], int tamanho) {
+    for (int x = 0; x < tamanho - 1; x++) {
+        for (int y = 0; y < tamanho - x - 1; y++) {
+            if (vetor[y] > vetor[y + 1]) {
+                trocar(&vetor[y], &vetor[y + 1]);
+            }
+        }
+    }
+}
+
+int main() {
+    int numeros[10];
+    int pares[10];
+    int impares[10];
+    int numeros_ordenados[10];
+    int pares_ordenados[10];
+    int impares_ordenados[10];
+
+    printf("Digite 10 numeros:\n");
+    for (int x = 0; x < 10; x++) {
+        printf("Digite o %d° numero: ", x + 1);
+        scanf("%d", &numeros[x]);
+    }
+
+    int qtd_pares = 0;
+    int qtd_impares = 0;
+
+    for (int x = 0; x < 10; x++) {
+        if (numeros[x] % 2 == 0) {
+            pares[qtd_pares++] = numeros[x];
+        } else {
+            impares[qtd_impares++] = numeros[x];
+        }
+    }
+
+    bubbleSort(numeros, 10);
+    bubbleSort(pares, qtd_pares);
+    bubbleSort(impares, qtd_impares);
+
+    for (int x = 0; x < qtd_impares; x++) {
+        impares_ordenados[x] = impares[qtd_impares - x - 1];
+    }
+
+    printf("Numeros ordenados: ");
+    for (int x = 0; x < 10; x++) {
+        printf("%d ", numeros[x]);
+    }
+    printf("\n");
+
+    printf("Pares ordenados: ");
+    for (int x = 0; x < qtd_pares; x++) {
+        printf("%d ", pares[x]);
+    }
+    printf("\n");
+
+    printf("Impares ordenados: ");
+    for (int x = 0; x < qtd_impares; x++) {
+        printf("%d ", impares_ordenados[x]);
+    }
+    printf("\n");
+
+    return 0;
+}
